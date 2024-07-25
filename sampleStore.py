@@ -30,11 +30,11 @@ with st.sidebar:
 
     # City selection - Create dropdown menu for genre selection
     city_list = df.City.unique()
-    city_selection = st.selectbox('Select City', sorted(city_list))
+    city_selection = st.selectbox('Select City', options=sorted(city_list),index=82)
 
     # Year selection - Create slider for year range selection
     year_list = df.year.unique()
-    year_selection = st.slider('Select Year', 2020, 2023, (2020, 2023))
+    year_selection = st.slider('Select Year', 2020, 2023, (2021, 2023))
     year_selection_list = list(np.arange(year_selection[0], year_selection[1]+1))
 
 # # Subset data - Filter DataFrame based on selections
@@ -49,9 +49,6 @@ df_editor = st.data_editor(reshaped_df, height=212, use_container_width=True,
                             column_config={"Order Date": st.column_config.DatetimeColumn("Order Date", format="D MMM YYYY"),
                                             "City":st.column_config.TextColumn("City")},
                             num_rows="dynamic")
-
-
-
 # # Data preparation - Prepare data for charting
 df_chart = pd.melt(df_editor.reset_index(), id_vars='Order Date', var_name='Category', value_name='Sales')
 # # Display line chart
