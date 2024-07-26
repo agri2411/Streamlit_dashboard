@@ -107,7 +107,7 @@ df_editor = st.data_editor(reshaped_df, height=212, use_container_width=True,
                             column_config={"Order Date": st.column_config.DatetimeColumn("Order Date", format="D MMM YYYY"),
                                             "Sales":st.column_config.NumberColumn("Sales", format="$%d")},
                             num_rows="dynamic")
-print(df_editor)
+
 # # Data preparation - Prepare data for charting
 df_chart = pd.melt(df_editor.reset_index(), id_vars='Order Date', var_name='Category', value_name='Sales')
 # # Display line chart
